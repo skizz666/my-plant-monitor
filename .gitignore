@@ -1,0 +1,29 @@
+# Arduino
+/firmware/Bodenfeuchtigkeit/config.h
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+venv/
+.env
+
+# Flask
+instance/
+.webassets-cache
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Datenbank
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log

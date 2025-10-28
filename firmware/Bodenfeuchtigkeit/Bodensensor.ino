@@ -1,6 +1,8 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
+#include <WiFiClientSecure.h>
 #include <config.h>
+
 
 // Sensor-Pin
 const int sensorPin = 4; // GPIO4, wie in der Analyse empfohlen
@@ -10,7 +12,7 @@ const int sensorDryValue = 3050; // trocken
 const int sensorWetValue = 1232; // nass
 
 // Globale Variablen
-WiFiClient espClient;
+WiFiClientSecure espClient;
 PubSubClient client(espClient);
 unsigned long lastMsg = 0;
 const long interval = 300000; 
@@ -35,12 +37,14 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Versuche, MQTT-Verbindung herzustellen...");
     String clientId = "ESP32Client-Paprika";
-    if (client.connect(clientId.c_str())) {
-      Serial.println("verbunden");
+
+    // Mit HiveMQ Credentials verbinden
+    if (client.connect(clientId.c_str(), mqtt_user, mqtt_password)) {
+      Serial.println("Verbunden mit HiveMQ Cloud!");
     } else {
-      Serial.print("fehlgeschlagen, rc=");
+      Serial.print("Fehlgeschlagen, rc=");
       Serial.print(client.state());
-      Serial.println(" versuche es in 5 Sekunden erneut");
+      Serial.println(" - versuche es in 5 Sekunden erneut");
       delay(5000);
     }
   }
@@ -54,7 +58,9 @@ void setup() {
  analogSetAttenuation(ADC_ATTEN_DB_11);
 
   setup_wifi();
-  client.setServer(mqtt_server, 1883);
+  //TLS/SSL
+  espClient.setInsecure();
+  client.setServer(mqtt_server, 8883);
 }
 
 void loop() {
@@ -86,12 +92,13 @@ void loop() {
     snprintf(msg, 10, "%d", moisturePercent);
     snprintf(msg2, 10, "%d", rawValue);
 
-    // Nachricht an den MQTT-Broker senden
-    client.publish(mqtt_topic, msg);
+    // Prozentwert an den MQTT-Broker senden
     if (client.publish(mqtt_topic, msg)) {
-      Serial.println("✓ MQTT erfolgreich");
+      Serial.print("MQTT erfolgreich: ");
+      Serial.print(moisturePercent);
+      Serial.println("%");
     } else {
-      Serial.println("✗ MQTT fehlgeschlagen");
+      Serial.println("MQTT fehlgeschlagen");
     }
     delay(5000);
     client.publish(mqtt_topic, msg2);

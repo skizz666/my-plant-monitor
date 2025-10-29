@@ -18,10 +18,10 @@ mqtt_client = None
 
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
-        logger.info("✅ Erfolgreich mit HiveMQ Cloud verbunden!")
+        logger.info("Erfolgreich mit HiveMQ Cloud verbunden!")
         client.subscribe("paprika/#")
     else:
-        logger.error(f"❌ Verbindung fehlgeschlagen: Code {rc}")
+        logger.error(f"Verbindung fehlgeschlagen: Code {rc}")
 
 
 def init_mqtt():
@@ -42,9 +42,9 @@ def init_mqtt():
     try:
         mqtt_client.connect(MQTT_BROKER, MQTT_PORT, 60)
         mqtt_client.loop_start()
-        logger.info(f"🚀 MQTT Client gestartet: {MQTT_BROKER}:{MQTT_PORT}")
+        logger.info(f"MQTT Client gestartet: {MQTT_BROKER}:{MQTT_PORT}")
     except Exception as e:
-        logger.error(f"❌ MQTT Verbindung fehlgeschlagen: {e}")
+        logger.error(f"MQTT Verbindung fehlgeschlagen: {e}")
 
 
 def get_mqtt_client():

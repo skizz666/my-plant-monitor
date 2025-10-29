@@ -8,10 +8,10 @@ load_dotenv()
 
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
-        print("✅ Erfolgreich mit HiveMQ verbunden!")
+        print("Erfolgreich mit HiveMQ verbunden!")
         client.publish("test/hello", "Hello from Python!")
     else:
-        print(f"❌ Verbindung fehlgeschlagen: {rc}")
+        print(f"Verbindung fehlgeschlagen: {rc}")
 
 client = mqtt.Client(client_id="test-python-client")
 client.username_pw_set(os.getenv("MQTT_USER"), os.getenv("MQTT_PASSWORD"))

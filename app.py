@@ -141,17 +141,49 @@ def index():
 # API-Endpunkt: Gibt alle Sensordaten als JSON zurück
 @app.route('/api/sensors')
 def get_all_sensors():
-    return jsonify(latest_values)
+    try:
+        # Hole neuesten Wert jedes Sensors aus der Datenbank
+        sensors = {}
+
+        #Bodenfeuchte
+        latest_moisture = SensorData.query.filter_by(
+            sensor_name="Bodenfeuchte"
+        ).order_by(SensorData.timestamp.desc()).first()
+        if latest_moisture:
+            sensors["Bodenfeuchte"] = {
+                'value': latest_moisture.value,
+                'timestamp': latest_moisture.timestamp.isoformat()
+            }
+        else:
+            sensors["Bodenfeuchte"] = {
+                'value': 0,
+                'timestamp': datetime.now(UTC).isoformat()
+            }
+
+        return jsonify(latest_values)
+    except Exception as e:
+        print(f"Fehler beim Abrufen der Sensordaten: {e}")
+        return jsonify({'error': str(e)}), 500
 
 
 # API-Endpunkt: Gibt die Daten eines bestimmten Sensors als JSON zurück
 @app.route('/api/sensors/<sensor_name>')
 def get_sensor_data(sensor_name):
-    if sensor_name in latest_values:
-        return jsonify({sensor_name: latest_values[sensor_name]})
-    else:
-        return jsonify({'error': 'Sensor not found'}), 404
-
+    try:
+        latest = SensorData.query.filter_by(
+            sensor_name=sensor_name
+        ).order_by(SensorData.timestamp.desc()).first()
+        if latest:
+            return jsonify({
+                sensor_name: {
+                    'value': latest.value,
+                    'timestamp': latest.timestamp.isoformat()
+                }
+            })
+        else:
+            return jsonify({'error': 'Sensor nicht gefunden'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 # Aktualisiert die Daten eines bestimmten Sensors
 def update_sensor(sensor_name, value, timestamp=None):
@@ -161,11 +193,11 @@ def update_sensor(sensor_name, value, timestamp=None):
     }
 
 
+# MQTT-Thread sofort starten (auch bei Gunicorn)
+mqtt_thread = threading.Thread(target=start_mqtt, daemon=True)
+mqtt_thread.start()
+
 if __name__ == '__main__':
     update_sensor("Bodenfeuchte", 0)  # Startwert
-
-    # Startet MQTT im Hintergrund
-    mqtt_thread = threading.Thread(target=start_mqtt, daemon=True)
-    mqtt_thread.start()
-
     app.run(debug=True, host='0.0.0.0', port=5000)
+

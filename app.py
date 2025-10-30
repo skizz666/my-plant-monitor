@@ -193,6 +193,33 @@ def update_sensor(sensor_name, value, timestamp=None):
     }
 
 
+@app.route('/api/sensors/<sensor_name>/history')
+def get_sensor_history(sensor_name):
+    try:
+        # Hole Daten der letzten 24 Stunden
+        from sqlalchemy import func, text
+        from datetime import timedelta
+
+        time_24h_ago = datetime.now(UTC) - timedelta(hours=24)
+
+        # Hole alle Datenpunkte der letzten 24h, sortiert
+        history = SensorData.query.filter(
+            SensorData.sensor_name == sensor_name,
+            SensorData.timestamp > time_24h_ago
+        ).order_by(SensorData.timestamp.asc()).all()
+
+        # Konvertiere zu JSON-Format
+        data = [{
+            'timestamp': point.timestamp.isoformat(),
+            'value': point.value
+        } for point in history]
+
+        return jsonify(data)
+    except Exception as e:
+        print(f"Fehler beim Abrufen der History: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
 # MQTT-Thread sofort starten (auch bei Gunicorn)
 mqtt_thread = threading.Thread(target=start_mqtt, daemon=True)
 mqtt_thread.start()

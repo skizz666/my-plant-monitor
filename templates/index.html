@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paprika Sensor Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <div>
         <span>Willkommen {{ current_user.username }}!</span>
         <a href="{{ url_for('logout') }}">Abmelden</a>
@@ -14,6 +15,9 @@
     <h1>Paprika Sensor Dashboard</h1>
     <div id="sensors-container"></div>
 
+    <canvas id="moistureChart" width="400" height="200"></canvas>
+
+    <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

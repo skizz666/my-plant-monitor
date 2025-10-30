@@ -15,8 +15,10 @@
     <h1>Paprika Sensor Dashboard</h1>
     <div id="sensors-container"></div>
 
-    <canvas id="moistureChart" width="400" height="200"></canvas>
-
+    <div class="chart-container">
+        <h2>Bodenfeuchte Verlauf letzte 24h</h2>
+    <canvas id="moistureChart"></canvas>
+    </div>
     <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>

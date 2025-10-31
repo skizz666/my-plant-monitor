@@ -1,0 +1,34 @@
+/* Basis-Styles */
+body {
+    background: #222831;
+    color: #EEEEEE;
+}
+
+/* Container und Card */
+.login-card {
+    background: #393E46;
+    color: #EEEEEE;
+}
+
+/* Icon */
+.login-icon {
+    background: #FD7014 url('../assets/img/food.svg') center/contain no-repeat !important;
+}
+
+
+/* Form-Inputs */
+.login-input {
+    background: #EEEEEE;
+    color: #222831;
+}
+
+/* Button */
+.login-button {
+    background: #FD7014;
+    color: #EEEEEE;
+    border-style: none;
+}
+
+.login-button:hover {
+    background: #e66312;
+}

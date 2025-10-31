@@ -88,9 +88,9 @@ void loop() {
 
     // Prozentwert als String für MQTT vorbereiten
     char msg[10];
-    char msg2[10];
+
     snprintf(msg, 10, "%d", moisturePercent);
-    snprintf(msg2, 10, "%d", rawValue);
+
 
     // Prozentwert an den MQTT-Broker senden
     if (client.publish(mqtt_topic, msg)) {
@@ -101,7 +101,6 @@ void loop() {
       Serial.println("MQTT fehlgeschlagen");
     }
     delay(5000);
-    client.publish(mqtt_topic, msg2);
 
   }
 }

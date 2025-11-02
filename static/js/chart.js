@@ -12,6 +12,8 @@ function initChart() {
                 borderColor: '#FD7014',
                 backgroundColor: '#EEEEEE',
                 color: '#FD7014',
+                fill: false,
+                pointRadius: 1,
             }]
         },
         options: {

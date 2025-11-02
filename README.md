@@ -20,7 +20,7 @@ Dieses Projekt war eine riesige Lernchance für mich. Es hat mir geholfen, grund
  *   **Authentifizierung:** Flask-Login für das User-Management.
  *   **Echtzeit-Kommunikation:** Paho-MQTT für den Empfang der Sensordaten.
  *   **Frontend:** Simples HTML/CSS und ein bisschen JavaScript (in den Templates), um die Daten dynamisch zu laden.
- *   **Hardware:** Ein ESP32/ESP8266 oder Raspberry Pi mit einem Bodenfeuchtigkeitssensor.
+ *   **Hardware:** Ein ESP32 mit einem kapazitiven Bodenfeuchtigkeitssensor.
 ​
  ## Was ich gelernt habe
 ​

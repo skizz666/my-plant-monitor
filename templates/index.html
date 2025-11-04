@@ -6,19 +6,25 @@
     <title>Paprika Sensor Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" type="image/x-icon" href="/static/assets/img/favicon.ico">
     <div>
         <a href="{{ url_for('logout') }}">Abmelden</a>
     </div>
 </head>
 <body>
-    <h1>Paprika Sensor Dashboard</h1>
-    <div id="sensors-container"></div>
+<h1>Paprika Sensor Dashboard</h1>
+<div id="sensors-container"></div>
 
-    <div class="chart-container">
-        <h2>Bodenfeuchte Verlauf letzte 24h</h2>
+<div class="chart-container">
+    <h2>Bodenfeuchte Verlauf letzte 24h</h2>
     <canvas id="moistureChart"></canvas>
-    </div>
-    <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</div>
+<script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
+<footer>
+    <div id="copyright-container">
+        <p>©{{ yearnow }} | Michael Karnitzschky</p>
+    </div>
+</footer>
 </html>

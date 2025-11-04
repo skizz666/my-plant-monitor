@@ -2,13 +2,14 @@ import os
 from flask import Flask, render_template, jsonify, redirect, url_for, request, flash
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime, UTC
+from datetime import datetime, UTC, timedelta
 import threading
 import paho.mqtt.client as mqtt
 from dotenv import load_dotenv
 from database import db
 from models import User, SensorData
 import ssl
+import pytz
 
 load_dotenv()
 app = Flask(__name__)
@@ -26,6 +27,9 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 db.init_app(app)
+
+#deutsche Zeitzone
+tz=pytz.timezone('Europe/Berlin')
 
 @login_manager.user_loader
 def user_load(user_id):
@@ -58,6 +62,7 @@ def on_message(client, userdata, msg):
             payload = msg.payload.decode()
 
             if "moisture" in topic:
+
                 value = float(payload.replace('%', '').strip())
                 update_sensor("Bodenfeuchte", round(value, 1))
                 print(f"Empfangen: {payload} → Wert: {value}%")
@@ -66,7 +71,7 @@ def on_message(client, userdata, msg):
                 sensor_data = SensorData(
                     sensor_name="Bodenfeuchte",
                     value=value,
-                    timestamp=datetime.now(UTC)
+                    timestamp=datetime.now(tz)
                 )
                 db.session.add(sensor_data)
                 db.session.commit()
@@ -120,7 +125,7 @@ def login():
         else:
             flash('Ungültiger Benutzername oder Passwort')  #fehlermeldung bei falschen daten
 
-    return render_template('login.html')
+    return render_template('login.html', yearnow=getyear())
 
 # Route zum Logout
 @app.route('/logout')
@@ -135,7 +140,7 @@ def logout():
 @app.route('/')
 @login_required
 def index():
-    return render_template('index.html')
+    return render_template('index.html', yearnow=getyear())
 
 
 # API-Endpunkt: Gibt alle Sensordaten als JSON zurück
@@ -214,10 +219,14 @@ def get_sensor_history(sensor_name):
             'value': point.value
         } for point in history]
 
+
         return jsonify(data)
     except Exception as e:
         print(f"Fehler beim Abrufen der History: {e}")
         return jsonify({'error': str(e)}), 500
+
+def getyear():
+    return datetime.now().year
 
 
 # MQTT-Thread sofort starten (auch bei Gunicorn)

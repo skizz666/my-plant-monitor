@@ -9,6 +9,7 @@ function initChart() {
             datasets: [{
                 label: 'Bodenfeuchte (%)',
                 data: [],
+                labelColor: '#222831',
                 borderColor: '#FD7014',
                 backgroundColor: '#EEEEEE',
                 color: '#FD7014',

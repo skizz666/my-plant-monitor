@@ -1,24 +1,30 @@
+:root {
+    --main-color: #FD7014;
+    --accent-color: #393E46;
+    --secondary-color: #EEEEEE;
+    --background: #222831;
+}
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 16px;
-    background: #222831;
-    color: #EEEEEE;
+    background: var(--background);
+    color: var(--secondary-color);
 }
 
 a {
-    color: #EEEEEE;
+    color: var(--secondary-color);
     text-decoration: none;
 }
 
 a:visited {
-    color: #EEEEEE;
+    color: var(--secondary-color);
     text-decoration: none;
 }
 
 h1 {
-    color: #FD7014;
+    color: var(--main-color);
 }
 
 #sensors-container {
@@ -29,7 +35,7 @@ h1 {
 }
 
 .sensor-card {
-    background: #222831;
+    background: var(--background);
     border-radius: 8px;
     padding: 12px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
@@ -44,13 +50,13 @@ h1 {
 
 .sensor-value {
     font-size: 1.4rem;
-    color: #FD7014;
+    color: var(--main-color);
     margin-bottom: 8px;
 }
 
 .sensor-timestamp {
     font-size: 0.8rem;
-    color: #EEEEEE;
+    color: var(--secondary-color);
 }
 
 
@@ -59,8 +65,8 @@ h1 {
 .chart-container {
     margin: 20px;
     padding: 10px;
-    background: #EEEEEE;
-    color: #222831;
+    background: var(--secondary-color);
+    color: var(--background);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1)
 }
@@ -69,4 +75,15 @@ h1 {
     max-height: 400px;
     width: 100%;
 
+}
+
+#footer-container{
+    margin: auto;
+    text-align: right;
+}
+
+#copyright-container{
+    margin: auto;
+    text-align: right;
+    color: var(--secondary-color);
 }

@@ -1,34 +1,56 @@
+:root {
+    --main-color: #FD7014;
+    --accent-color: #505868;
+    --secondary-color: #EEEEEE;
+    --background: #222831;
+}
+
 /* Basis-Styles */
 body {
-    background: #222831;
-    color: #EEEEEE;
+    background: var(--background);
+    color: var(--secondary-color);
 }
 
 /* Container und Card */
 .login-card {
-    background: #393E46;
-    color: #EEEEEE;
+    background: var(--accent-color);
+    color: var(--secondary-color);
 }
 
 /* Icon */
 .login-icon {
-    background: #FD7014 url('../assets/img/food.svg') center/contain no-repeat !important;
+    background: var(--main-color) url('../assets/img/food.svg') center/contain no-repeat !important;
 }
 
 
 /* Form-Inputs */
 .login-input {
-    background: #EEEEEE;
-    color: #222831;
+    background: var(--secondary-color);
+    color: var(--background);
 }
 
 /* Button */
 .login-button {
-    background: #FD7014;
-    color: #EEEEEE;
+    background: var(--main-color);
+    color: var(--secondary-color);
     border-style: none;
 }
 
 .login-button:hover {
-    background: #e66312;
+    background: var(--main-color);
+}
+
+#footer-container{
+    margin: auto;
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: 100%;
+
+}
+
+#copyright-container{
+    margin: auto;
+    text-align: right;
+    color: var(--secondary-color);
 }

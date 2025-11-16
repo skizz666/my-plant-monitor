@@ -11,6 +11,10 @@ Dieses Projekt war eine riesige Lernchance für mich. Es hat mir geholfen, grund
  *   **Datenbank:** Die Sensordaten werden in einer Datenbank gespeichert, um sie für Diagramme zu nutzen.
  *   **Diagramm:** Die Sensordaten werden in einem Diagramm ausgegeben.
  *   **API:** Ein kleiner API-Endpunkt, um die Sensordaten im JSON-Format abzurufen.
+
+## Meine App im Einsatz
+
+![Meine App im Einsatz](./Screenshot 2025-11-16 145902.png)
 ​
  ## Verwendete Technologien
 ​

@@ -14,7 +14,7 @@ Dieses Projekt war eine riesige Lernchance für mich. Es hat mir geholfen, grund
 
 ## Meine App im Einsatz
 
-![Meine App im Einsatz](./Screenshot 2025-11-16 145902.png)
+![Meine App im Einsatz](./Screenshot%202025-11-16%20145902.png)
 ​
  ## Verwendete Technologien
 ​

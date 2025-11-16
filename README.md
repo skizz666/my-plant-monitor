@@ -28,9 +28,9 @@ Dieses Projekt war eine riesige Lernchance für mich. Es hat mir geholfen, grund
  Dieses Projekt war eine Herausforderung, aber ich habe unglaublich viel gelernt:
 ​
  *   **Arduino bzw. ESP Grundlagen:** Wie man Sensoren ausliest und die entstandenen Daten über MQTT versendet.
- *   **MQTT-Protokoll:** Wie Geräte über ein Netzwerk miteinander kommunizieren können. Das war super spannend!
+ *   **MQTT-Protokoll:** Wie Geräte über ein Netzwerk miteinander kommunizieren können. 
  *   **Datenbanken:** Die Grundlagen von Models und wie man Daten mit SQLAlchemy speichert und abfragt.
- *   **Benutzer-Authentifizierung:** Die Wichtigkeit von Sicherheit und wie man ein einfaches Login umsetzt.
+ *   **Benutzer-Authentifizierung:** Wie man ein einfaches Login mit flask und gehashten Passwörtern umsetzt.
  *   **Konfigurations-Management:** Wie man sensible Daten wie Passwörter mit `.env`-Dateien aus dem Code heraushält.
  *   **Deployment & Infrastruktur:** Wie man eine Anwendung auf einem Cloud-Server (VPS, z.B. ein DigitalOcean Droplet) bereitstellt.
  *   **Linux-Serveradministration:** Die Grundlagen der Konfiguration eines Ubuntu-Servers über die Kommandozeile (SSH).

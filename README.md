@@ -1,4 +1,4 @@
- # Mein Paprika-Monitor – Ein kleines, praktisches Lernprojekt
+ # 🌶️Mein Paprika-Monitor – Ein kleines, praktisches Lernprojekt🌶️
 ​
 Dieses Projekt ist mein erster Schritt, um die Welt der Softwareentwicklung mit Hardware zu verbinden. Die Idee entstand aus einem einfachen Problem: Ich möchte meine Paprikapflanze überwintern und gieße immer zu viel. Also habe ich eine kleine Web-Anwendung gebaut, die mir die Bodenfeuchtigkeit anzeigt.
 ​
